@@ -1,0 +1,20 @@
+{
+    "compilationOptions": {
+        "preferredConfigPath": "./tsconfig.json"
+    },
+
+    "entries": [
+        {
+            "filePath": "./src/Modules/index.module.ts",
+            "outFile": "dist/index.d.ts",
+            "libraries": {
+                "inlinedLibraries": ["@Duc-Developer/HierarchicalTree"]
+            },
+            "output": {
+                "inlineDeclareGlobals": false,
+                "sortNodes": true,
+                "umdModuleName": "HierarchicalTree"
+            }
+        }
+    ]
+}

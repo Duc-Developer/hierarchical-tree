@@ -1,0 +1,43 @@
+{
+  "name": "hierarchical-tree",
+  "version": "0.0.1",
+  "description": "This is library supported for convert array to hierarchical tree with move, swap, delete,... node easier",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest",
+    "dts-bundle-generator": "^9.0.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "author": "Duc-Developer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duc-Developer/hierarchical-tree.git"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "test": "bun test /test",
+    "postinstall": "husky install && bun run pre-husky",
+    "pre-husky": "npx husky add .husky/pre-commit 'bun lint-staged'",
+    "prettier-check": "prettier --check 'src/**/*'",
+    "prettier-format": "prettier --write 'src/**/*'",
+    "bundle": "bun run scripts/bundle.js && bun run bundle:declaration",
+    "bundle:declaration": "./node_modules/.bin/dts-bundle-generator --config dts-bundle-config.json"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint",
+      "npm run format",
+      "git add ."
+    ]
+  }
+}

@@ -1,5 +1,9 @@
+import TreeFactory from './Components/Factory';
+import HierarchicalTree from './Components/TreeNode';
+
 const main = {
-    welcome: () => console.log('Hello World')
-}
+    TreeFactory,
+    HierarchicalTree,
+};
 
 export default main;

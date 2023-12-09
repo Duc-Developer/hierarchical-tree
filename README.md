@@ -1,4 +1,4 @@
-# hierarchical-tree ![hierarchical-tree-icon](/docs/assets/tree-algorithm-icon.svg) 
+# hierarchical-tree ![tree-icon](/docs/assets/tree-algorithm-icon.svg) 
 
 ## Introduction
 This is utility support to convert array to hierarchical tree faster.

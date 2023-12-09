@@ -17,4 +17,6 @@ bun install         # for installation
 bun run dev         # for run start project in local
 bun run test        # for run test case of this module
 bun run bundle      # for bundle this module to publish npm
+bun run format      # format with prettier
+bun run check       # for check lint prettier
 ```

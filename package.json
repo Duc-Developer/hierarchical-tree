@@ -30,8 +30,8 @@
     "test": "bun test /test",
     "postinstall": "husky install && bun run pre-husky",
     "pre-husky": "npx husky add .husky/pre-commit 'bun lint-staged'",
-    "prettier-check": "prettier --check 'src/**/*'",
-    "prettier-format": "prettier --write 'src/**/*'",
+    "check": "prettier --check 'src/**/*'",
+    "format": "prettier --write 'src/**/*'",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
     "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json"
   },

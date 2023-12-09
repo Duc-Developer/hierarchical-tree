@@ -8,7 +8,11 @@ export interface RootInfo {
 export interface RawData {
     id: string;
     name?: string;
-    parentId: string;
+    parentId?: string;
+}
+
+export interface ProducedData extends RawData {
+    children?: ProducedData[];
 }
 
 export interface AbstractTreeFactory {

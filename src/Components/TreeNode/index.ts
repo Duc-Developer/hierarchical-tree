@@ -22,7 +22,7 @@ class HierarchicalTree implements AbstractTreeNode {
     init(props: TreeNodeProps) {
         this.id = props.id;
         this.name = props.name ?? '';
-        this.parentId = props.parentId ?? uuid();
+        this.parentId = props.parentId;
         this.parent = props.parent;
         if (props.root) this.root = props.root;
         this.children = [];

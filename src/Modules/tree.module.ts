@@ -8,7 +8,7 @@ export interface TransferParams {
 export interface AbstractTreeNode {
     id: string;
     name: string;
-    parentId: string;
+    parentId?: string;
     children: AbstractTreeNode[];
     parent?: AbstractTreeNode;
     level?: number;

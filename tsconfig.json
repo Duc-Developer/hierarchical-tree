@@ -10,6 +10,9 @@
       ],
       "@utils/*": [
         "Utilities/*"
+      ],
+      "@test/*": [
+        "test/*"
       ]
     },
     "lib": [

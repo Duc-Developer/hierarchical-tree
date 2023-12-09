@@ -26,8 +26,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev": "bun run src/index.ts",
-    "test": "bun test /test",
+    "test": "bun test",
     "postinstall": "husky install && bun run pre-husky",
     "pre-husky": "npx husky add .husky/pre-commit 'bun lint-staged'",
     "check": "prettier --check 'src/**/*'",

@@ -1,5 +1,5 @@
 import { DEFAULT_ROOT, TREE_ACTION_TRANSFER } from '@src/Constants';
-import { AbstractTreeNode, TransferParams, TreeNodeProps } from '@src/Modules/tree.module';
+import { AbstractTreeNode, TransferParams, TreeNodeProps } from '@src/Models/tree.model';
 import { findDeepNode, uuid } from '@src/Utilities';
 
 class HierarchicalTree implements AbstractTreeNode {

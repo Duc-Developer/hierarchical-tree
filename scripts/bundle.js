@@ -1,7 +1,7 @@
 import { getFiles } from './buildUtils';
 
 const extensions = ['.js', '.ts'];
-const excludeExtensions = ['.module.ts'];
+const excludeExtensions = ['.model.ts'];
 const build = async () => {
     const esmResponses = await Bun.build({
         entrypoints: [...getFiles('./src', extensions, excludeExtensions)],

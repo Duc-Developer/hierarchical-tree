@@ -10,7 +10,7 @@ And it supported for more function:
 ....
 
 ## Usage
-```
+```typescript
 import { TreeFactory } from "hierarchical-tree";
 const data = [
     {id: 1, name: 'parent1'},
@@ -22,6 +22,16 @@ const data = [
 ];
 const treeData = TreeFactory.produce(data);
 ```
+
+## Module
+```typescript
+module.exports = {
+    TreeFactory,
+    HierarchicalTree,
+    constants: { TREE_ACTION_TRANSFER, DEFAULT_ROOT }
+};
+```
+
 ## Input interface
 Your input data required some field bellow
 | Properties | Description | Type |

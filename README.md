@@ -34,10 +34,11 @@ module.exports = {
 
 ## Input interface
 Your input data required some field bellow
-| Properties | Description | Type |
+| Properties | Description | Type 
+| --- | --- | --- |
 | id | uniq id | string |
 | name | name for node | string |
-| parentId | parentId of node | string or undefined |
+| parentId | parentId of node | string or undefined
 
 ## Api
 | Properties | Description | Type | Default | Note

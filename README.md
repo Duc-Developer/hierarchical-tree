@@ -48,7 +48,8 @@ Your input data required some field bellow
 
 > [!TIP]
 > You can follow this interface for detail:
-```
+
+```typescript
 interface AbstractTreeNode {
     id: string;
     name: string;
@@ -67,7 +68,7 @@ interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
-    toJSON: () => Pick<AbstractTreeNode, 'id' | 'name' | 'parent' | 'parentId' | 'children' | 'level'>;
+    toJSON: () => JSONData;
 }
 
 enum TREE_ACTION_TRANSFER {
@@ -75,6 +76,14 @@ enum TREE_ACTION_TRANSFER {
     PATH = 'path',
     NODE = 'node',
 }
+
+interface TransferParams {
+    from?: AbstractTreeNode | string;
+    to: AbstractTreeNode | string;
+    type?: TREE_ACTION_TRANSFER | string;
+}
+
+interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> {}
 ```
 
 > If you want to contribute to development. Please come to [CONTRIBUTING](docs/CONTRIBUTING.md)

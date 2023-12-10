@@ -3,22 +3,15 @@ import treeLogo from '../../../docs/assets/tree-algorithm-icon.svg'
 import './App.css'
 import modules from "hierarchical-tree";
 import carData from '../../../test/car.data.json';
+import simpleData from '../../../test/simple.data.json';
 const { TreeFactory } = modules;
 
-const fakeData = [
-  { id: '1', name: 'parent1' },
-  { id: '21', name: 'children2-1', parentId: '2' },
-  { id: '2', name: 'parent2' },
-  { id: '11', name: 'children1-1', parentId: '1' },
-  { id: '12', name: 'children1-2', parentId: '1' },
-  { id: '13', name: 'children1-3', parentId: '1' },
-]
 function App() {
   const [tree, setTree] = useState({});
 
   const convertArrayToTree = () => {
     const startTime = performance.now();
-    const data = new TreeFactory().produce(fakeData, { name: 'car', id: 'tree-car' });
+    const data = new TreeFactory().produce(simpleData);
     const endTime = performance.now();
     console.log(endTime - startTime, 'convertArrayToTree');
     return data;
@@ -26,14 +19,17 @@ function App() {
 
   const convertTreeToJSON = ({ tree }: { tree: any }) => {
     const startTime = performance.now();
-    tree.toJSON();
+    const data = tree.toJSON();
     const endTime = performance.now();
     console.log(endTime - startTime, 'convertTreeToJSON');
+    return data;
   };
 
   const calculate = () => {
-    const newData = convertArrayToTree();
-    convertTreeToJSON({ tree: newData });
+    const tree = convertArrayToTree();
+    // tree.move({ from: tree.children[0], to: tree.children[1] }) // enable if u want to test this func
+    // tree.swap({ from: tree.children[0], to: tree.children[1] }) // enable if u want to test this func
+    const newData = convertTreeToJSON({ tree });
     setTree(newData)
   }
 

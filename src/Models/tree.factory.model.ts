@@ -1,4 +1,4 @@
-import { AbstractTreeNode } from './tree.module';
+import { AbstractTreeNode } from './tree.model';
 
 export interface RootInfo {
     id: string;

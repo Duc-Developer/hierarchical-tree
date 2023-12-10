@@ -3,7 +3,7 @@ import { TREE_ACTION_TRANSFER } from '@src/Constants';
 export interface TransferParams {
     from?: AbstractTreeNode | string;
     to: AbstractTreeNode | string;
-    type?: TREE_ACTION_TRANSFER;
+    type?: TREE_ACTION_TRANSFER | string;
 }
 
 export interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> {}

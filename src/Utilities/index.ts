@@ -1,4 +1,4 @@
-import { AbstractTreeNode } from '@src/Modules/tree.module';
+import { AbstractTreeNode } from '@src/Models/tree.model';
 
 export const findDeepNode = (id: string, treeNode: AbstractTreeNode[]): AbstractTreeNode | undefined => {
     for (const item of treeNode) {

@@ -1,0 +1,51 @@
+{
+    "id": "tree-car",
+    "name": "car",
+    "level": 0,
+    "children": [
+      {
+        "id": "12",
+        "name": "Honda",
+        "parentId": "tree-car",
+        "level": 1,
+        "children": [
+          {
+            "id": "6",
+            "name": "Audi",
+            "parentId": "12",
+            "level": 2,
+            "children": []
+          },
+          {
+            "id": "7",
+            "name": "Tesla",
+            "parentId": "12",
+            "level": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "name": "Huyndai",
+        "parentId": "tree-car",
+        "level": 1,
+        "children": [
+          {
+            "id": "11",
+            "name": "Inova",
+            "parentId": "9",
+            "level": 2,
+            "children": []
+          },
+          {
+            "id": "13",
+            "name": "Vin",
+            "parentId": "9",
+            "level": 2,
+            "children": []
+          }
+        ]
+      }
+    ]
+}

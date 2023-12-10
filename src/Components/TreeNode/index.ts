@@ -1,5 +1,5 @@
 import { DEFAULT_ROOT, TREE_ACTION_TRANSFER } from '@src/Constants';
-import { AbstractTreeNode, TransferParams, TreeNodeProps } from '@src/Modules/tree.module';
+import { AbstractTreeNode, TransferParams, TreeNodeProps } from '@src/Models/tree.model';
 import { findDeepNode, uuid } from '@src/Utilities';
 
 class HierarchicalTree implements AbstractTreeNode {
@@ -25,7 +25,7 @@ class HierarchicalTree implements AbstractTreeNode {
         this.name = props.name ?? '';
         this.parentId = props.parentId;
         this.parent = props.parent;
-        if (props.root) this.root = props.root;
+        if (typeof props.root === 'number') this.root = props.root;
         this.children = props.children ?? [];
         this.level = props.level;
         return this;
@@ -55,6 +55,7 @@ class HierarchicalTree implements AbstractTreeNode {
         if (!from) fromNode = this;
         switch (type) {
             case TREE_ACTION_TRANSFER.NODE:
+                if (from) fromNode = from;
                 if (to) toNode = to;
                 break;
             case TREE_ACTION_TRANSFER.ID:
@@ -84,6 +85,7 @@ class HierarchicalTree implements AbstractTreeNode {
         if (!from) fromNode = this;
         switch (type) {
             case TREE_ACTION_TRANSFER.NODE:
+                if (from) fromNode = from;
                 if (to) toNode = to;
                 break;
             case TREE_ACTION_TRANSFER.ID:
@@ -100,8 +102,14 @@ class HierarchicalTree implements AbstractTreeNode {
         if (toNode instanceof HierarchicalTree && fromNode instanceof HierarchicalTree) {
             const cloneToNode = JSON.parse(JSON.stringify(toNode));
             const cloneFromNode = JSON.parse(JSON.stringify(fromNode));
-            toNode = cloneFromNode;
-            fromNode = cloneToNode;
+            const parentOfToNode = toNode.parent;
+            const parentFromNode = fromNode.parent;
+            if (!parentFromNode || !parentOfToNode) return index;
+            const toNodeInd = parentOfToNode.children.findIndex((item) => item.id === cloneToNode.id);
+            const fromNodeInd = parentOfToNode.children.findIndex((item) => item.id === cloneFromNode.id);
+            if (toNodeInd === -1 || fromNodeInd === -1) return index;
+            parentOfToNode.children[toNodeInd] = cloneFromNode;
+            parentFromNode.children[fromNodeInd] = cloneToNode;
         }
         return index;
     }

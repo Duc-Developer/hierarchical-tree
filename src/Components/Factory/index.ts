@@ -1,8 +1,8 @@
-import { ProducedData, RawData, RootInfo } from '@src/Modules/tree.factory.module';
-import { AbstractTreeFactory } from '@src/Modules/tree.factory.module';
+import { ProducedData, RawData, RootInfo } from '@src/Models/tree.factory.model';
+import { AbstractTreeFactory } from '@src/Models/tree.factory.model';
 import HierarchicalTree from '@src/Components/TreeNode';
 import { DEFAULT_ROOT } from '@src/Constants';
-import { TreeNodeProps } from '@src/Modules/tree.module';
+import { TreeNodeProps } from '@src/Models/tree.model';
 class TreeFactory implements AbstractTreeFactory {
     produce(data: RawData[], rootInfo?: RootInfo) {
         const rootTree = this.initRoot(rootInfo);

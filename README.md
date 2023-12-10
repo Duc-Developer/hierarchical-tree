@@ -10,7 +10,7 @@ And it supported for more function:
 ....
 
 ## Usage
-```
+```typescript
 import { TreeFactory } from "hierarchical-tree";
 const data = [
     {id: 1, name: 'parent1'},
@@ -23,19 +23,43 @@ const data = [
 const treeData = TreeFactory.produce(data);
 ```
 
-## Api
-| Properties | Description | Note
-| --- | --- | --- |
-| `setParent` | set new parent for note | N/A |
-| `move` | move from node to node with by id or relativePath or treeNode | default: treeNode
-| `swap` | same move function but swap child too | N/A |
-| `removeChild` | remove child and return index number when success or undefined when it fail | N/A |
-| `appendChild` | opposite with `removeChild` | N/A |
-| `findDeep` | find deep child of this node call action | N/A |
-| `getRelativePath` | get relativePath from root | ...incoming |
-
-You can follow this interface for detail:
+## Module
+```typescript
+module.exports = {
+    TreeFactory,
+    HierarchicalTree,
+    constants: { TREE_ACTION_TRANSFER, DEFAULT_ROOT }
+};
 ```
+
+## Input interface
+Your input data required some field bellow
+| Properties | Description | Type |
+| id | uniq id | string |
+| name | name for node | string |
+| parentId | parentId of node | string or undefined |
+
+## Api
+| Properties | Description | Type | Default | Note
+| --- | --- | --- | --- | --- |
+| id | uniq | string | '' | _ |
+| name | name of node | string | '' | _ |
+| parentId | for calculate which is parent's of node | string | '' | _ |
+| children | array of node's child | AbstractTreeNode | [] | _ |
+| parent | parent of this node | AbstractTreeNode | undefined | _ |
+| level | level of node in tree. Root node has level = 0 | number | 0 | ...coming... |
+| `setParent` | set new parent for this node | (data: AbstractTreeNode) => void | _ | _ |
+| `move` | move from node to node, if move fail it return undefined | ({ from, to, type }: TransferParams) => number or undefined | type: TREE_ACTION_TRANSFER | _ |
+| `swap` | same move function but swap child too | ({ from, to, type }: TransferParams) => number or undefined | type: TREE_ACTION_TRANSFER | _ |
+| `removeChild` | remove child and return index number when success or undefined when it fail | (id: string) => number or undefined | _ | _ |
+| `appendChild` | opposite with `removeChild` | (children: AbstractTreeNode[], index?: number) => number or undefined | _ | _ |
+| `findDeep` | find deep child of this node call action | (id: string) => AbstractTreeNode or undefined | _ | _ |
+| `getRelativePath` | get relativePath from root |  () => string | _ | ...coming... |
+
+> [!TIP]
+> You can follow this interface for detail:
+
+```typescript
 interface AbstractTreeNode {
     id: string;
     name: string;
@@ -54,8 +78,22 @@ interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
-    toJSON: () => Pick<AbstractTreeNode, 'id' | 'name' | 'parent' | 'parentId' | 'children' | 'level'>;
+    toJSON: () => JSONData;
 }
+
+enum TREE_ACTION_TRANSFER {
+    ID = 'id',
+    PATH = 'path',
+    NODE = 'node',
+}
+
+interface TransferParams {
+    from?: AbstractTreeNode | string;
+    to: AbstractTreeNode | string;
+    type?: TREE_ACTION_TRANSFER | string;
+}
+
+interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> {}
 ```
 
 > If you want to contribute to development. Please come to [CONTRIBUTING](docs/CONTRIBUTING.md)

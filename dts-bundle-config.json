@@ -5,7 +5,7 @@
 
     "entries": [
         {
-            "filePath": "./src/Modules/index.module.ts",
+            "filePath": "./src/Models/index.model.ts",
             "outFile": "dist/index.d.ts",
             "libraries": {
                 "inlinedLibraries": ["@Duc-Developer/HierarchicalTree"]

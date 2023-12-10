@@ -7,6 +7,12 @@
       ],
       "@dist/*": [
         "dist/*"
+      ],
+      "@utils/*": [
+        "Utilities/*"
+      ],
+      "@test/*": [
+        "test/*"
       ]
     },
     "lib": [

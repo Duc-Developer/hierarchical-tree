@@ -1,5 +1,9 @@
-const main = {
-    welcome: () => console.log('Hello World')
-}
+import TreeFactory from './Components/Factory';
+import HierarchicalTree from './Components/TreeNode';
+import { TREE_ACTION_TRANSFER, DEFAULT_ROOT } from './Constants';
 
-export default main;
+module.exports = {
+    TreeFactory,
+    HierarchicalTree,
+    constants: { TREE_ACTION_TRANSFER, DEFAULT_ROOT },
+};

@@ -1,0 +1,51 @@
+{
+    "id": "__root__",
+    "name": "__root__",
+    "level": 0,
+    "children": [
+      {
+        "id": "1",
+        "name": "parent1",
+        "parentId": "__root__",
+        "level": 1,
+        "children": [
+          {
+            "id": "11",
+            "name": "children1-1",
+            "parentId": "1",
+            "level": 2,
+            "children": []
+          },
+          {
+            "id": "12",
+            "name": "children1-2",
+            "parentId": "1",
+            "level": 2,
+            "children": []
+          },
+          {
+            "id": "13",
+            "name": "children1-3",
+            "parentId": "1",
+            "level": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "parent2",
+        "parentId": "__root__",
+        "level": 1,
+        "children": [
+          {
+            "id": "21",
+            "name": "children2-1",
+            "parentId": "2",
+            "level": 2,
+            "children": []
+          }
+        ]
+      }
+    ]
+  }

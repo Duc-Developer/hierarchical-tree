@@ -12,6 +12,7 @@
     "url": "git+https://github.com/Duc-Developer/hierarchical-tree.git"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "bun-types": "latest",
     "dts-bundle-generator": "^9.0.0",
     "husky": "^8.0.3",

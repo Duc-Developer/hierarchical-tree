@@ -131,6 +131,22 @@ class HierarchicalTree implements AbstractTreeNode {
         }
         return undefined;
     }
+
+    toJSON() {
+        const getJSONData = (tree: AbstractTreeNode) => {
+            const jsonData: any = {
+                id: tree.id,
+                name: tree.name,
+                parentId: tree.parentId,
+                parent: tree.parent ? getJSONData(tree.parent) : tree.parent,
+                level: tree.level,
+                children: [],
+            };
+            if (tree.children.length) jsonData.children = tree.children.map(getJSONData);
+            return jsonData;
+        };
+        return getJSONData(this);
+    }
 }
 
 export default HierarchicalTree;

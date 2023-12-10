@@ -23,6 +23,7 @@ export interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
+    toJSON: () => Pick<AbstractTreeNode, 'id' | 'name' | 'parent' | 'parentId' | 'children' | 'level'>;
 }
 
 export interface TreeNodeProps extends Pick<AbstractTreeNode, 'id' | 'name' | 'root' | 'parent'> {

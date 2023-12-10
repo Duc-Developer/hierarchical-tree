@@ -1,9 +1,7 @@
 import TreeFactory from './Components/Factory';
 import HierarchicalTree from './Components/TreeNode';
 
-const main = {
+module.exports = {
     TreeFactory,
     HierarchicalTree,
 };
-
-export default main;

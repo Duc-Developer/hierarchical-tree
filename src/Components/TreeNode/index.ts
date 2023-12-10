@@ -25,7 +25,7 @@ class HierarchicalTree implements AbstractTreeNode {
         this.name = props.name ?? '';
         this.parentId = props.parentId;
         this.parent = props.parent;
-        if (props.root) this.root = props.root;
+        if (typeof props.root === 'number') this.root = props.root;
         this.children = props.children ?? [];
         this.level = props.level;
         return this;

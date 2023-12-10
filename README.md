@@ -22,19 +22,32 @@ const data = [
 ];
 const treeData = TreeFactory.produce(data);
 ```
+## Input interface
+Your input data required some field bellow
+| Properties | Description | Type |
+| id | uniq id | string |
+| name | name for node | string |
+| parentId | parentId of node | string or undefined |
 
 ## Api
-| Properties | Description | Note
-| --- | --- | --- |
-| `setParent` | set new parent for note | N/A |
-| `move` | move from node to node with by id or relativePath or treeNode | default: treeNode
-| `swap` | same move function but swap child too | N/A |
-| `removeChild` | remove child and return index number when success or undefined when it fail | N/A |
-| `appendChild` | opposite with `removeChild` | N/A |
-| `findDeep` | find deep child of this node call action | N/A |
-| `getRelativePath` | get relativePath from root | ...incoming |
+| Properties | Description | Type | Default | Note
+| --- | --- | --- | --- | --- |
+| id | uniq | string | '' | _ |
+| name | name of node | string | '' | _ |
+| parentId | for calculate which is parent's of node | string | '' | _ |
+| children | array of node's child | AbstractTreeNode | [] | _ |
+| parent | parent of this node | AbstractTreeNode | undefined | _ |
+| level | level of node in tree. Root node has level = 0 | number | 0 | ...coming... |
+| `setParent` | set new parent for this node | (data: AbstractTreeNode) => void | _ | _ |
+| `move` | move from node to node, if move fail it return undefined | ({ from, to, type }: TransferParams) => number or undefined | type: TREE_ACTION_TRANSFER | _ |
+| `swap` | same move function but swap child too | ({ from, to, type }: TransferParams) => number or undefined | type: TREE_ACTION_TRANSFER | _ |
+| `removeChild` | remove child and return index number when success or undefined when it fail | (id: string) => number or undefined | _ | _ |
+| `appendChild` | opposite with `removeChild` | (children: AbstractTreeNode[], index?: number) => number or undefined | _ | _ |
+| `findDeep` | find deep child of this node call action | (id: string) => AbstractTreeNode or undefined | _ | _ |
+| `getRelativePath` | get relativePath from root |  () => string | _ | ...coming... |
 
-You can follow this interface for detail:
+> [!TIP]
+> You can follow this interface for detail:
 ```
 interface AbstractTreeNode {
     id: string;
@@ -55,6 +68,12 @@ interface AbstractTreeNode {
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
     toJSON: () => Pick<AbstractTreeNode, 'id' | 'name' | 'parent' | 'parentId' | 'children' | 'level'>;
+}
+
+enum TREE_ACTION_TRANSFER {
+    ID = 'id',
+    PATH = 'path',
+    NODE = 'node',
 }
 ```
 

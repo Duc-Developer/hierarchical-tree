@@ -1,6 +1,6 @@
 {
   "name": "hierarchical-tree",
-  "version": "0.0.1",
+  "version": "1.0-alpha.0",
   "description": "This is library supported for convert array to hierarchical tree with move, swap, delete,... node faster",
   "main": "./dist/index.esm.js",
   "module": "./dist/index.esm.js",

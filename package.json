@@ -1,6 +1,6 @@
 {
   "name": "hierarchical-tree",
-  "version": "1.0-alpha.0",
+  "version": "0.0.1",
   "description": "This is library supported for convert array to hierarchical tree with move, swap, delete,... node faster",
   "main": "./dist/index.esm.js",
   "module": "./dist/index.esm.js",
@@ -12,7 +12,6 @@
     "url": "git+https://github.com/Duc-Developer/hierarchical-tree.git"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
     "bun-types": "latest",
     "dts-bundle-generator": "^9.0.0",
     "husky": "^8.0.3",

@@ -24,7 +24,10 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
             bun-version: 1.0.15
-
+      - uses: oven-sh/setup-bun@v1
+        with:
+          registry-url: "https://npm.pkg.github.com/"
+          scope: "@foo"
       - run: bun install
       - name: Create Release Pull Request or Publish
         id: changesets
@@ -32,5 +35,4 @@ jobs:
         with:
           publish: bun run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -17,14 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
-      - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
         with:
-            bun-version: 1.0.15
-
+            bun-version: latest
       - run: bun install
       - name: Create Release Pull Request or Publish
         id: changesets
@@ -32,5 +27,4 @@ jobs:
         with:
           publish: bun run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

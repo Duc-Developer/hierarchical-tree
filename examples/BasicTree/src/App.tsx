@@ -5,12 +5,20 @@ import modules from "hierarchical-tree";
 import carData from '../../../test/car.data.json';
 const { TreeFactory } = modules;
 
+const fakeData = [
+  { id: '1', name: 'parent1' },
+  { id: '21', name: 'children2-1', parentId: '2' },
+  { id: '2', name: 'parent2' },
+  { id: '11', name: 'children1-1', parentId: '1' },
+  { id: '12', name: 'children1-2', parentId: '1' },
+  { id: '13', name: 'children1-3', parentId: '1' },
+]
 function App() {
   const [tree, setTree] = useState({});
 
   const convertArrayToTree = () => {
     const startTime = performance.now();
-    const data = new TreeFactory().produce(carData, { name: 'car', id: 'tree-car' });
+    const data = new TreeFactory().produce(fakeData, { name: 'car', id: 'tree-car' });
     const endTime = performance.now();
     console.log(endTime - startTime, 'convertArrayToTree');
     return data;

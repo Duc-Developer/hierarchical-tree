@@ -9,20 +9,31 @@ class TreeFactory implements AbstractTreeFactory {
         const cloneData: HierarchicalTree[] = JSON.parse(JSON.stringify(data));
         const defaultAcc: { children: HierarchicalTree[] } = { children: [] };
         const converted = cloneData.reduce((accumulator, item, i) => {
-            if (!item.parentId) {
-                const treeNode = new HierarchicalTree({ ...item, level: 1 });
+            if (!item.parentId || item.parentId === rootTree.id) {
+                const treeNode = new HierarchicalTree({
+                    ...item,
+                    level: 1,
+                    parentId: rootTree.id,
+                    parent: rootTree,
+                }).setRoot(rootTree);
                 cloneData[i] = treeNode;
                 accumulator.children.push(treeNode);
             } else {
                 const matchIndex = cloneData.findIndex((arrItem) => arrItem.id === item.parentId);
-                let match = matchIndex !== -1 ? cloneData[matchIndex] : undefined;
-                if (!match) return accumulator;
-                if (!Boolean(match instanceof HierarchicalTree)) {
-                    match = new HierarchicalTree({ ...item, level: Number(match?.parent?.level) + 1 });
+                let parentMatch = matchIndex !== -1 ? cloneData[matchIndex] : undefined;
+                if (!parentMatch) return accumulator;
+                if (!Boolean(parentMatch instanceof HierarchicalTree)) {
+                    cloneData[matchIndex] = new HierarchicalTree({
+                        id: parentMatch.id,
+                        name: parentMatch.name,
+                        parentId: parentMatch?.parent?.parentId ?? rootTree.id,
+                        parent: !parentMatch?.parent?.parentId ? rootTree : parentMatch.parent,
+                        level: !parentMatch?.parent?.parentId ? 1 : Number(parentMatch?.parent?.level) + 1,
+                    }).setRoot(rootTree);
                 }
-                const treeNode = new HierarchicalTree({ ...item, level: Number(match.level) + 1 });
+                const treeNode = new HierarchicalTree({ ...item, level: Number(parentMatch.level) + 1 }).setRoot(rootTree);
                 cloneData[i] = treeNode;
-                match.appendChild([treeNode]);
+                cloneData[matchIndex].appendChild([treeNode]);
             }
             return accumulator;
         }, defaultAcc);

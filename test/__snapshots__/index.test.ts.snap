@@ -1,70 +1,111 @@
 // Bun Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`convert cars data to tree 1`] = `
-HierarchicalTree {
+{
   "children": [
-    HierarchicalTree {
+    {
       "children": [
-        HierarchicalTree {
+        {
           "children": [],
           "id": "6",
           "level": 2,
           "name": "Audi",
-          "parent": undefined,
           "parentId": "12",
-          "root": undefined,
         },
-        HierarchicalTree {
+        {
           "children": [],
           "id": "7",
           "level": 2,
           "name": "Tesla",
-          "parent": undefined,
           "parentId": "12",
-          "root": undefined,
         },
       ],
       "id": "12",
       "level": 1,
       "name": "Honda",
-      "parent": undefined,
-      "parentId": undefined,
-      "root": undefined,
+      "parentId": "tree-car",
     },
-    HierarchicalTree {
+    {
       "children": [
-        HierarchicalTree {
+        {
           "children": [],
           "id": "11",
           "level": 2,
           "name": "Inova",
-          "parent": undefined,
           "parentId": "9",
-          "root": undefined,
         },
-        HierarchicalTree {
+        {
           "children": [],
           "id": "13",
           "level": 2,
           "name": "Vin",
-          "parent": undefined,
           "parentId": "9",
-          "root": undefined,
         },
       ],
       "id": "9",
       "level": 1,
       "name": "Huyndai",
-      "parent": undefined,
-      "parentId": undefined,
-      "root": undefined,
+      "parentId": "tree-car",
     },
   ],
   "id": "tree-car",
   "level": 0,
   "name": "car",
-  "parent": undefined,
   "parentId": undefined,
-  "root": [Circular],
+}
+`;
+
+exports[`convert cities data to tree 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [],
+          "id": "11",
+          "level": 2,
+          "name": "children1-1",
+          "parentId": "1",
+        },
+        {
+          "children": [],
+          "id": "12",
+          "level": 2,
+          "name": "children1-2",
+          "parentId": "1",
+        },
+        {
+          "children": [],
+          "id": "13",
+          "level": 2,
+          "name": "children1-3",
+          "parentId": "1",
+        },
+      ],
+      "id": "1",
+      "level": 1,
+      "name": "parent1",
+      "parentId": "__root__",
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "id": "21",
+          "level": NaN,
+          "name": "children2-1",
+          "parentId": "2",
+        },
+      ],
+      "id": "2",
+      "level": 1,
+      "name": "parent2",
+      "parentId": "__root__",
+    },
+  ],
+  "id": "__root__",
+  "level": 0,
+  "name": "__root__",
+  "parentId": undefined,
 }
 `;

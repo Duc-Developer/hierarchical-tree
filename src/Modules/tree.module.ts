@@ -5,6 +5,8 @@ export interface TransferParams {
     to: AbstractTreeNode | string;
     type?: TREE_ACTION_TRANSFER;
 }
+
+export interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> {}
 export interface AbstractTreeNode {
     id: string;
     name: string;
@@ -23,9 +25,11 @@ export interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
+    toJSON: () => JSONData;
 }
 
 export interface TreeNodeProps extends Pick<AbstractTreeNode, 'id' | 'name' | 'root' | 'parent'> {
     parentId?: string;
     level: number;
+    children?: AbstractTreeNode[];
 }

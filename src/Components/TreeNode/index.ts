@@ -17,6 +17,7 @@ class HierarchicalTree implements AbstractTreeNode {
 
     setRoot(node: HierarchicalTree) {
         this.root = node;
+        return this;
     }
 
     init(props: TreeNodeProps) {
@@ -25,7 +26,7 @@ class HierarchicalTree implements AbstractTreeNode {
         this.parentId = props.parentId;
         this.parent = props.parent;
         if (props.root) this.root = props.root;
-        this.children = [];
+        this.children = props.children ?? [];
         this.level = props.level;
         return this;
     }
@@ -130,6 +131,21 @@ class HierarchicalTree implements AbstractTreeNode {
             this.children.splice(index, 0, ...children);
         }
         return undefined;
+    }
+
+    toJSON() {
+        const getJSONData = (tree: AbstractTreeNode) => {
+            const jsonData: any = {
+                id: tree.id,
+                name: tree.name,
+                parentId: tree.parentId,
+                level: tree.level,
+                children: [],
+            };
+            if (tree.children.length) jsonData.children = tree.children.map(getJSONData);
+            return jsonData;
+        };
+        return getJSONData(this);
     }
 }
 

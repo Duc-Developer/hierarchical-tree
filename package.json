@@ -1,6 +1,6 @@
 {
   "name": "hierarchical-tree",
-  "version": "0.0.1",
+  "version": "1.0-alpha.0",
   "description": "This is library supported for convert array to hierarchical tree with move, swap, delete,... node faster",
   "main": "./dist/index.esm.js",
   "module": "./dist/index.esm.js",
@@ -31,7 +31,7 @@
     "pre-husky": "npx husky add .husky/pre-commit 'bun lint-staged'",
     "check": "prettier --check 'src/**/*'",
     "format": "prettier --write 'src/**/*'",
-    "release": "bun bundle && changeset publish",
+    "release": "bun bundle && changeset publish --access public",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
     "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json"
   },

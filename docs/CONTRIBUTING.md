@@ -21,6 +21,15 @@ bun run format      # format with prettier
 bun run check       # for check lint prettier
 ```
 
+## How to dev and check
+I have one example with react, you can check with command line:
+```bash
+cd examples/BasicTree
+bun install
+bun dev
+```
+Your demo will be run in [localhost:3006](http://localhost:3006) 
+
 ## GitGraph
 Every branch which used for fix bug, create new features,... alway checkout and create a pull request when done.
 Follow this diagram bellow

@@ -45,7 +45,7 @@ Your input data required some field bellow
 | id | uniq | string | '' | _ |
 | name | name of node | string | '' | _ |
 | parentId | for calculate which is parent's of node | string | '' | _ |
-| children | array of node's child | AbstractTreeNode | [] | _ |
+| children | array of node's child | AbstractTreeNode | [ ] | _ |
 | parent | parent of this node | AbstractTreeNode | undefined | _ |
 | level | level of node in tree. Root node has level = 0 | number | 0 | ...coming... |
 | `setParent` | set new parent for this node | (data: AbstractTreeNode) => void | _ | _ |

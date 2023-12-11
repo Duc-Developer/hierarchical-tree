@@ -33,7 +33,8 @@
     "format": "prettier --write 'src/**/*'",
     "release": "bun bundle && changeset publish --access public",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
-    "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json"
+    "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json",
+    "cleanup": "git branch | grep -v 'master$' | grep -v 'develop$' | xargs git branch -D" 
   },
   "lint-staged": {
     "src/**/*.ts": [

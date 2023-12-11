@@ -12,6 +12,7 @@
     "url": "git+https://github.com/Duc-Developer/hierarchical-tree.git"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "bun-types": "latest",
     "dts-bundle-generator": "^9.0.0",
     "husky": "^8.0.3",
@@ -31,10 +32,10 @@
     "pre-husky": "npx husky add .husky/pre-commit 'bun lint-staged'",
     "check": "prettier --check 'src/**/*'",
     "format": "prettier --write 'src/**/*'",
-    "release": "bun bundle && changeset publish --access public",
+    "release": "bun bundle && changeset publish --provenance --access public",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
     "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json",
-    "cleanup": "git branch | grep -v 'master$' | grep -v 'develop$' | xargs git branch -D" 
+    "cleanup": "git branch | grep -v 'master$' | grep -v 'develop$' | xargs git branch -D"
   },
   "lint-staged": {
     "src/**/*.ts": [

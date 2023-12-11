@@ -14,12 +14,12 @@ And it supported for more function:
 import TreeModules from "hierarchical-tree";
 const { TreeFactory } = TreeModules;
 const data = [
-    {id: 1, name: 'parent1'},
-    {id: 21, name: 'children2-1', parentId: 2},
-    {id: 2, name: 'parent2'},
-    {id: 11, name: 'children1-1', parentId: 1},
-    {id: 12, name: 'children1-2', parentId: 1},
-    {id: 13, name: 'children1-3', parentId: 1},
+    {id: "1", name: 'parent1'},
+    {id: "21", name: 'children2-1', parentId: "2"},
+    {id: "2", name: 'parent2'},
+    {id: "11", name: 'children1-1', parentId: "1"},
+    {id: "12", name: 'children1-2', parentId: "1"},
+    {id: "13", name: 'children1-3', parentId: "1"},
 ];
 const treeData = TreeFactory.produce(data);
 ```

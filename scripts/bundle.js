@@ -1,10 +1,10 @@
 import { getFiles } from './buildUtils';
 
-const extensions = ['.js', '.ts'];
-const excludeExtensions = ['.model.ts'];
+// const extensions = ['.js', '.ts'];
+// const excludeExtensions = ['.model.ts'];
 const build = async () => {
     const esmResponses = await Bun.build({
-        entrypoints: [...getFiles('./src', extensions, excludeExtensions)],
+        entrypoints: ['src/index.ts'],
         outdir: './dist',
         format: 'esm',
         naming: "[dir]/[name].esm.[ext]",
@@ -13,7 +13,7 @@ const build = async () => {
         throw new AggregateError(esmResponses.logs, "Bundle .esm failed");
     }
     const minifyResponses = await Bun.build({
-        entrypoints: [...getFiles('./src', extensions, excludeExtensions)],
+        entrypoints: ['src/index.ts'],
         outdir: './dist',
         format: 'esm',
         naming: "[dir]/[name].min.[ext]",

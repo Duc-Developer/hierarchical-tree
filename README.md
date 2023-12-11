@@ -11,7 +11,8 @@ And it supported for more function:
 
 ## Usage
 ```typescript
-import { TreeFactory } from "hierarchical-tree";
+import TreeModules from "hierarchical-tree";
+const { TreeFactory } = TreeModules;
 const data = [
     {id: 1, name: 'parent1'},
     {id: 21, name: 'children2-1', parentId: 2},

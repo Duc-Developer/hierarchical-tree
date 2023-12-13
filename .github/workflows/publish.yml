@@ -25,7 +25,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: bun run release
+          publish: bun run publish --provenance --access public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

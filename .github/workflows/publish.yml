@@ -1,9 +1,8 @@
 name: Publish
 on:
-  workflow_run:
-    workflows: [CI]
-    branches: [master]
-    types: [completed]
+  push:
+    branches:
+      - master
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -21,4 +20,12 @@ jobs:
         with:
             bun-version: latest
       - run: bun install
-      - run: bun run publish --provenance --access public
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: bun run release
+          cache: 'none'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

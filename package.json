@@ -55,25 +55,19 @@
   ],
   "keywords": [
     "tree",
-    "hierachical-tree",
+    "hierarchical-tree",
     "antd",
-    "antd",
-    "tree",
-    "array",
-    "to",
-    "tree",
-    "list",
-    "to",
-    "tree",
-    "array-helper",
+    "antd-tree",
+    "array-to-tree",
+    "list to tree",
+    "array helper",
     "child",
     "parent",
-    "datastructures",
+    "data structures",
     "navigation",
     "descendants",
     "ancestors",
     "util",
-    "tree",
-    "util"
+    "flat tree"
   ]
 }

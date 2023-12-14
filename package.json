@@ -35,6 +35,7 @@
     "release": "bun bundle && changeset publish",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
     "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json",
+    "ci:version": "bun changeset version",
     "cleanup": "git branch | grep -v 'master$' | grep -v 'release$' | grep -v 'develop$' | xargs git branch -D"
   },
   "lint-staged": {

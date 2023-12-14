@@ -35,7 +35,8 @@
     "release": "bun bundle && changeset publish",
     "bundle": "rm -rf dist/ && bun run scripts/bundle.js && bun run bundle:declaration",
     "bundle:declaration": "dts-bundle-generator --config dts-bundle-config.json",
-    "cleanup": "git branch | grep -v 'master$' | grep -v 'develop$' | xargs git branch -D"
+    "ci:version": "bun changeset version",
+    "cleanup": "git branch | grep -v 'master$' | grep -v 'release$' | grep -v 'develop$' | xargs git branch -D"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -55,25 +56,19 @@
   ],
   "keywords": [
     "tree",
-    "hierachical-tree",
+    "hierarchical-tree",
     "antd",
-    "antd",
-    "tree",
-    "array",
-    "to",
-    "tree",
-    "list",
-    "to",
-    "tree",
-    "array-helper",
+    "antd-tree",
+    "array-to-tree",
+    "list to tree",
+    "array helper",
     "child",
     "parent",
-    "datastructures",
+    "data structures",
     "navigation",
     "descendants",
     "ancestors",
     "util",
-    "tree",
-    "util"
+    "flat tree"
   ]
 }

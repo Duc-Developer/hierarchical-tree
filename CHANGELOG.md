@@ -1,5 +1,11 @@
 # hierarchical-tree
 
+## 1.0.2
+
+### Patch Changes
+
+-   update cicd
+
 ## 1.0.1
 
 ### Patch Changes

@@ -27,6 +27,8 @@ jobs:
         uses: changesets/action@v1
         with:
           version: bun ci:version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit version
         id: commit-version
         uses: beaconbrigade/package-json-version@v0.3
@@ -34,6 +36,8 @@ jobs:
           path: .
           commit: "Release version ${{ steps.get-version.outputs.version }}"
           title: "Release version ${{ steps.get-version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1

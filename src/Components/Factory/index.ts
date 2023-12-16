@@ -3,7 +3,6 @@ import { AbstractTreeFactory } from '@src/Models/tree.factory.model';
 import HierarchicalTree from '@src/Components/TreeNode';
 import { DEFAULT_ROOT } from '@src/Constants';
 import { AbstractTreeNode, TreeNodeProps } from '@src/Models/tree.model';
-import cloneDeep from 'lodash.clonedeep';
 class TreeFactory implements AbstractTreeFactory {
     data: AbstractTreeNode = Object.create(HierarchicalTree);
 
@@ -39,12 +38,12 @@ class TreeFactory implements AbstractTreeFactory {
             }
             return result;
         };
-        return loop(cloneDeep(this.data));
+        return loop(this.data);
     }
 
     produce(data: RawData[], rootInfo?: RootInfo) {
         const rootTree = this.initRoot(rootInfo);
-        const cloneData: any[] = cloneDeep(data);
+        const cloneData: any[] = JSON.parse(JSON.stringify(data));
         const defaultAcc: { children: any[] } = { children: [] };
         const converted = cloneData.reduce((accumulator, item, i) => {
             if (!item.parentId || item.parentId === rootTree.id) {

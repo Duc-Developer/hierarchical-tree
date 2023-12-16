@@ -11,7 +11,7 @@ function App() {
 
   const convertArrayToTree = () => {
     const startTime = performance.now();
-    const data = new TreeFactory().produce(simpleData);
+    const data = new TreeFactory(simpleData);
     const endTime = performance.now();
     console.log(endTime - startTime, 'convertArrayToTree');
     return data;
@@ -19,7 +19,7 @@ function App() {
 
   const convertTreeToJSON = ({ tree }: { tree: any }) => {
     const startTime = performance.now();
-    const data = tree.toJSON();
+    const data = tree.getJSON();
     const endTime = performance.now();
     console.log(endTime - startTime, 'convertTreeToJSON');
     return data;
@@ -30,6 +30,7 @@ function App() {
     // tree.move({ from: tree.children[0], to: tree.children[1] }) // enable if u want to test this func
     // tree.swap({ from: tree.children[0], to: tree.children[1] }) // enable if u want to test this func
     const newData = convertTreeToJSON({ tree });
+    console.log(newData, 'newData')
     setTree(newData)
   }
 

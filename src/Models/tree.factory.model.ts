@@ -18,4 +18,5 @@ export interface ProducedData extends RawData {
 export interface AbstractTreeFactory {
     produce: (data: RawData[]) => AbstractTreeNode;
     initRoot: (rootInfo?: RootInfo) => AbstractTreeNode;
+    getData: () => AbstractTreeNode;
 }

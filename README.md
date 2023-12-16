@@ -21,7 +21,9 @@ const data = [
     {id: "12", name: 'children1-2', parentId: "1"},
     {id: "13", name: 'children1-3', parentId: "1"},
 ];
-const treeData = TreeFactory.produce(data);
+const tree = new TreeFactory(data);
+const treeData =  treeData.getData();
+const treeJSON =  treeData.getJSON();
 ```
 
 ## Module
@@ -69,9 +71,11 @@ interface AbstractTreeNode {
     children: AbstractTreeNode[];
     parent?: AbstractTreeNode;
     level?: number;
-    readonly root?: AbstractTreeNode;
+    root?: AbstractTreeNode;
 
-    init: (props: TreeNodeProps) => this;
+    _init: (props: TreeNodeProps) => this;
+    _setRoot: (node: AbstractTreeNode) => AbstractTreeNode;
+
     setLevel: (val: number) => void;
     setParent: (data: AbstractTreeNode) => void;
     move: ({ from, to, type }: TransferParams) => number | undefined;
@@ -80,7 +84,6 @@ interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
-    toJSON: () => JSONData;
 }
 
 enum TREE_ACTION_TRANSFER {

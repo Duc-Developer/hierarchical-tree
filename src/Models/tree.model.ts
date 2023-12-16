@@ -6,7 +6,7 @@ export interface TransferParams {
     type?: TREE_ACTION_TRANSFER | string;
 }
 
-export interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> { }
+export interface JSONData extends Pick<AbstractTreeNode, 'id' | 'name' | 'parentId' | 'children' | 'level'> {}
 export interface AbstractTreeNode {
     id: string;
     name: string;

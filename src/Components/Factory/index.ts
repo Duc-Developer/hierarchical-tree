@@ -27,14 +27,18 @@ class TreeFactory implements AbstractTreeFactory {
             'appendChild',
             'findDeep',
             'getRelativePath',
+            'root',
+            'parent',
         ];
         const loop = (tree: AbstractTreeNode) => {
-            for (const key of funcKeys) {
-                delete tree[key];
+            const result: any = {};
+            for (const key in tree) {
+                if (funcKeys.includes(key as Partial<keyof AbstractTreeNode>)) continue;
+                result[key] = tree[key as Partial<keyof AbstractTreeNode>];
+                if (key === 'children') result[key] = result[key].map(loop);
             }
-            if (tree.children?.length) tree.children.map(loop);
-            return tree;
-        }
+            return result;
+        };
         return loop(cloneDeep(this.data));
     }
 

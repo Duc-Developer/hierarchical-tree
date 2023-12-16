@@ -125,7 +125,7 @@ const HierarchicalTree: AbstractTreeNode = {
             this.children.splice(index, 0, ...children);
         }
         return undefined;
-    }
-}
+    },
+};
 
 export default HierarchicalTree;

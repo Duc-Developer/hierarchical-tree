@@ -25,10 +25,12 @@ jobs:
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
+        uses: beaconbrigade/package-json-version@v0.3
         with:
+          path: .
           version: bun ci:version
-          commit: "chore: update versions"
-          title: "chore: update versions"
+          commit: "release version ${{ steps.get-version.outputs.version }}"
+          title: "release version ${{ steps.get-version.outputs.version }}"
           publish: bun run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

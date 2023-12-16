@@ -92,7 +92,62 @@ exports[`convert cities data to tree 1`] = `
         {
           "children": [],
           "id": "21",
-          "level": NaN,
+          "level": 2,
+          "name": "children2-1",
+          "parentId": "2",
+        },
+      ],
+      "id": "2",
+      "level": 1,
+      "name": "parent2",
+      "parentId": "__root__",
+    },
+  ],
+  "id": "__root__",
+  "level": 0,
+  "name": "__root__",
+  "parentId": undefined,
+}
+`;
+
+exports[`convert cities data to tree 2`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [],
+          "id": "11",
+          "level": 2,
+          "name": "children1-1",
+          "parentId": "1",
+        },
+        {
+          "children": [],
+          "id": "12",
+          "level": 2,
+          "name": "children1-2",
+          "parentId": "1",
+        },
+        {
+          "children": [],
+          "id": "13",
+          "level": 2,
+          "name": "children1-3",
+          "parentId": "1",
+        },
+      ],
+      "id": "1",
+      "level": 1,
+      "name": "parent1",
+      "parentId": "__root__",
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "id": "21",
+          "level": 2,
           "name": "children2-1",
           "parentId": "2",
         },

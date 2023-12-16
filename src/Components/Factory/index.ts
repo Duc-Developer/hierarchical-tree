@@ -3,7 +3,6 @@ import { AbstractTreeFactory } from '@src/Models/tree.factory.model';
 import HierarchicalTree from '@src/Components/TreeNode';
 import { DEFAULT_ROOT } from '@src/Constants';
 import { AbstractTreeNode, TreeNodeProps } from '@src/Models/tree.model';
-import cloneDeep from 'lodash.clonedeep';
 class TreeFactory implements AbstractTreeFactory {
     data: AbstractTreeNode = Object.create(HierarchicalTree);
 
@@ -39,12 +38,12 @@ class TreeFactory implements AbstractTreeFactory {
             }
             return result;
         };
-        return loop(cloneDeep(this.data));
+        return loop(this.data);
     }
 
     produce(data: RawData[], rootInfo?: RootInfo) {
         const rootTree = this.initRoot(rootInfo);
-        const cloneData: any[] = cloneDeep(data);
+        const cloneData: any[] = JSON.parse(JSON.stringify(data));
         const defaultAcc: { children: any[] } = { children: [] };
         const converted = cloneData.reduce((accumulator, item, i) => {
             if (!item.parentId || item.parentId === rootTree.id) {
@@ -62,19 +61,26 @@ class TreeFactory implements AbstractTreeFactory {
                 const matchIndex = cloneData.findIndex((arrItem) => arrItem.id === item.parentId);
                 let parentMatch = matchIndex !== -1 ? cloneData[matchIndex] : undefined;
                 if (!parentMatch) return accumulator;
+                let parentLevel = 1;
                 if (!Boolean(parentMatch._init)) {
+                    parentLevel = !parentMatch?.parent?.parentId ? 1 : Number(parentMatch?.parent?.level) + 1;
+                    const parentInfo = {
+                        id: parentMatch.id,
+                        name: parentMatch.name,
+                        parentId: parentMatch?.parent?.parentId ?? rootTree.id,
+                        parent: !parentMatch?.parent?.parentId ? rootTree : parentMatch.parent,
+                        level: parentLevel
+                    };
                     cloneData[matchIndex] = Object.create(HierarchicalTree)
-                        ._init({
-                            id: parentMatch.id,
-                            name: parentMatch.name,
-                            parentId: parentMatch?.parent?.parentId ?? rootTree.id,
-                            parent: !parentMatch?.parent?.parentId ? rootTree : parentMatch.parent,
-                            level: !parentMatch?.parent?.parentId ? 1 : Number(parentMatch?.parent?.level) + 1,
-                        })
+                        ._init(parentInfo)
                         ._setRoot(rootTree);
                 }
+                const childInfo = {
+                    ...item,
+                    level: typeof parentMatch.level !== 'number' ? parentLevel + 1 : Number(parentMatch.level) + 1
+                };
                 const treeNode = Object.create(HierarchicalTree)
-                    ._init({ ...item, level: Number(parentMatch.level) + 1 })
+                    ._init(childInfo)
                     ._setRoot(rootTree);
                 cloneData[i] = treeNode;
                 cloneData[matchIndex].appendChild([treeNode]);

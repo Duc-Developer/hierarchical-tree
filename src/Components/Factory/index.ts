@@ -61,19 +61,26 @@ class TreeFactory implements AbstractTreeFactory {
                 const matchIndex = cloneData.findIndex((arrItem) => arrItem.id === item.parentId);
                 let parentMatch = matchIndex !== -1 ? cloneData[matchIndex] : undefined;
                 if (!parentMatch) return accumulator;
+                let parentLevel = 1;
                 if (!Boolean(parentMatch._init)) {
+                    parentLevel = !parentMatch?.parent?.parentId ? 1 : Number(parentMatch?.parent?.level) + 1;
+                    const parentInfo = {
+                        id: parentMatch.id,
+                        name: parentMatch.name,
+                        parentId: parentMatch?.parent?.parentId ?? rootTree.id,
+                        parent: !parentMatch?.parent?.parentId ? rootTree : parentMatch.parent,
+                        level: parentLevel
+                    };
                     cloneData[matchIndex] = Object.create(HierarchicalTree)
-                        ._init({
-                            id: parentMatch.id,
-                            name: parentMatch.name,
-                            parentId: parentMatch?.parent?.parentId ?? rootTree.id,
-                            parent: !parentMatch?.parent?.parentId ? rootTree : parentMatch.parent,
-                            level: !parentMatch?.parent?.parentId ? 1 : Number(parentMatch?.parent?.level) + 1,
-                        })
+                        ._init(parentInfo)
                         ._setRoot(rootTree);
                 }
+                const childInfo = {
+                    ...item,
+                    level: typeof parentMatch.level !== 'number' ? parentLevel + 1 : Number(parentMatch.level) + 1
+                };
                 const treeNode = Object.create(HierarchicalTree)
-                    ._init({ ...item, level: Number(parentMatch.level) + 1 })
+                    ._init(childInfo)
                     ._setRoot(rootTree);
                 cloneData[i] = treeNode;
                 cloneData[matchIndex].appendChild([treeNode]);

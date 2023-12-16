@@ -14,9 +14,11 @@ export interface AbstractTreeNode {
     children: AbstractTreeNode[];
     parent?: AbstractTreeNode;
     level?: number;
-    readonly root?: AbstractTreeNode;
+    root?: AbstractTreeNode;
 
-    init: (props: TreeNodeProps) => this;
+    _init: (props: TreeNodeProps) => this;
+    _setRoot: (node: AbstractTreeNode) => AbstractTreeNode;
+
     setLevel: (val: number) => void;
     setParent: (data: AbstractTreeNode) => void;
     move: ({ from, to, type }: TransferParams) => number | undefined;
@@ -25,7 +27,6 @@ export interface AbstractTreeNode {
     appendChild: (children: AbstractTreeNode[], index?: number) => number | undefined;
     findDeep: (id: string) => AbstractTreeNode | undefined;
     getRelativePath: () => string;
-    toJSON: () => JSONData;
 }
 
 export interface TreeNodeProps extends Pick<AbstractTreeNode, 'id' | 'name' | 'root' | 'parent'> {

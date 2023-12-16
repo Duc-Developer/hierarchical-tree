@@ -22,15 +22,22 @@ jobs:
         with:
             bun-version: 1.0.15
       - run: bun install
-      - name: Create Release Pull Request or Publish
-        id: changesets
+      - name: Change version
+        id: change-version
         uses: changesets/action@v1
+        with:
+          version: bun ci:version
+      - name: Commit version
+        id: commit-version
         uses: beaconbrigade/package-json-version@v0.3
         with:
           path: .
-          version: bun ci:version
-          commit: "release version ${{ steps.get-version.outputs.version }}"
-          title: "release version ${{ steps.get-version.outputs.version }}"
+          commit: "Release version ${{ steps.get-version.outputs.version }}"
+          title: "Release version ${{ steps.get-version.outputs.version }}"
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
           publish: bun run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

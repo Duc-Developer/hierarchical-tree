@@ -5,8 +5,7 @@ on:
       - master
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   build:

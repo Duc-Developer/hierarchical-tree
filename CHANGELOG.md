@@ -1,5 +1,11 @@
 # hierarchical-tree
 
+## 1.2.1
+
+### Patch Changes
+
+-   fd248eb: remove lodash and update yaml
+
 ## 1.2.0
 
 ### Minor Changes

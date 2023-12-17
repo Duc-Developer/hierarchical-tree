@@ -51,7 +51,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "test": "bun test",
+    "test": "bun test --update-snapshots",
     "check": "prettier --check 'src/**/*'",
     "format": "prettier --write 'src/**/*'",
     "release": "bun bundle && changeset publish",

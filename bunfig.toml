@@ -1,4 +1,3 @@
 [test]
-
-# always enable coverage
+root = "./test"
 coverage = true
